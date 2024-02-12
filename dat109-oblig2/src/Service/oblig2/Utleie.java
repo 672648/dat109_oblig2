@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 public class Utleie {
 	private String kredittNummer;
-	private String rgsNummer;
+	private String regNummer;
 	private int kilometerStand;
 	private LocalDate dato;
 	private LocalTime tid;
@@ -13,7 +13,7 @@ public class Utleie {
 	
 	public Utleie(String kredittNummer, String rgsNummer, int kilometerStand, LocalDate dato, LocalTime tid) {
 		this.kredittNummer = kredittNummer;
-		this.rgsNummer = rgsNummer;
+		this.regNummer = regNummer;
 		this.kilometerStand = kilometerStand;
 		this.dato = dato;
 		this.tid = tid;
@@ -27,12 +27,12 @@ public class Utleie {
 		this.kredittNummer = kredittNummer;
 	}
 	
-	public String getRgsNummer() {
-		return this.rgsNummer;
+	public String getRegNummer() {
+		return this.regNummer;
 	}
 	
-	public void setRgsNummer(String rgsNummer) {
-		this.rgsNummer = rgsNummer;
+	public void setRegNummer(String rgsNummer) {
+		this.regNummer = rgsNummer;
 	}
 	
 	public int getKilometerStand() {

@@ -11,10 +11,12 @@ public class Retur {
 	
 	public int regning(Utleie utleie, boolean utleieSted) {
 		int regning = 0;
-		//TODO
+		//TODO - regn ut regningen for kunden og sjekk om bilen er levert på et annet utleiekontor
 		
 		
-		//Sjekk om bilen er levert på en annen utleiekontor enn der den var utleid 
+		
+		//Sjekk om bilen er levert på en annen utleiekontor enn der den var utleid
+		//Hvis true, legg på gebyr til regningen
 		if (utleieSted) {
 			regning = regning + gebyr;
 		}

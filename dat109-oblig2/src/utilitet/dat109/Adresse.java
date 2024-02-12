@@ -5,7 +5,7 @@ public class Adresse {
 	private String postSted;
 	private int postNummer;
 	
-	public void Adresse(String gateAdresse, String postSted, int postNummer) {
+	public Adresse(String gateAdresse, String postSted, int postNummer) {
 		this.gateAdresse = gateAdresse;
 		this.postSted = postSted;
 		this.postNummer = postNummer;
