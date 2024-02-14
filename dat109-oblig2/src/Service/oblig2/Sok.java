@@ -24,10 +24,12 @@ public class Sok implements ISok {
 
 	private UtleieKontorer kontorer;
 	private Kunde kunde;
+	private Reservasjon reservasjon;
 
-	public Sok(Kunde kunde) {
-		kontorer = new UtleieKontorer();
+	public Sok(Kunde kunde, UtleieKontorer utleiekontorer) {
+		kontorer = utleiekontorer;
 		kunde = kunde;
+		
 	}
 
 	@Override
@@ -37,9 +39,12 @@ public class Sok implements ISok {
 
 	@Override
 	public void reserver(LocalDate startDato,LocalDate sluttDato, int antallDager, String kategori, String gateAdresse) {
-		Reservasjon reservasjon = new Reservasjon(kunde,startDato, sluttDato, antallDager, kategori, gateAdresse);
+		reservasjon = new Reservasjon(kunde,startDato, sluttDato, antallDager, kategori, gateAdresse);
 	}
-
+	
+	public Reservasjon getReservasjon() {
+		return reservasjon;
+	}
 	@Override
 	public void sok(String kategori, LocalDate startDato, LocalDate sluttDato, String adresse) {
 		List<UtleieKontor> kontorer = hentKontorListAdresse(adresse);
