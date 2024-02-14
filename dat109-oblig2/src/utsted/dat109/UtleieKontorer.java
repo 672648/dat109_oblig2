@@ -1,12 +1,16 @@
 package utsted.dat109;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UtleieKontorer {
 	
-	private static List<UtleieKontor> kontorer;
+	private List<UtleieKontor> kontorer;
 	
+	public UtleieKontorer() {
+		kontorer = new ArrayList<UtleieKontor>();
+	}
 
 	public List<UtleieKontor> hentKontorAdresse(String gateAdresse){
 		if(gateAdresse == "") {

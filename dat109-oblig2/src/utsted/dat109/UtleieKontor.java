@@ -19,7 +19,7 @@ public class UtleieKontor {
 		this.adresse = new Adresse(gateAdresse, postSted, postNummer);
 	}
 	
-	public List<Bil> faListe(String kategori, /*LocalDate startDato*/ /*, LocalDate sluttDato*/) {
+	public List<Bil> faListe(String kategori /*LocalDate startDato*/ /*, LocalDate sluttDato*/) {
 		List<Bil> soket = biler;
 		/*if(startDato == null) {
 			startDato = LocalDate.now();
@@ -44,31 +44,32 @@ public class UtleieKontor {
 	}
 	
 	public String getKategori(int teller) {
-		String kategoriStr;
+		String kategoriStr = "";
 		switch(teller) {
 		case 0:
-			kategoriStr = kategori.getAntallA() + "";
+			kategoriStr = "antall: " + kategori.getAntallA() + " i kategori A";
 			break;
 			
 		case 1:
-			kategoriStr = kategori.getAntallB() + "";
+			kategoriStr = "antall: " + kategori.getAntallB() + " i kategori B";
 			break;
 			
 		case 2:
-			kategoriStr = kategori.getAntallC() + "";
+			kategoriStr = "antall: " + kategori.getAntallC() + "i kategori C";
 			break;
 			
 		case 3:
-			kategoriStr = kategori.getAntallD() + "";
+			kategoriStr = "antall: " + kategori.getAntallD() + "i kategori D";
 			break;
 			
 		case 4:
-			kategoriStr = kategori.getAntallE() + "";
+			kategoriStr = "antall:" +  kategori.getAntallE() + "i kategori E";
 			break;
 		}
 		return kategoriStr;
 	}
 	
+	//Legg til kilimeter her!!!!!!
 	public void lagBil(String regnr, String merke, String modell, String farge, String kategori) {
 		Bil bil = new Bil(regnr, merke, modell, farge, kategori, adresse.getGateAdresse());
 		biler.add(bil);
