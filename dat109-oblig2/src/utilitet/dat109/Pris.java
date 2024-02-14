@@ -6,33 +6,56 @@ public class Pris {
 	private int dagsPrisC = 100;
 	private int dagsPrisD = 100;
 	private int dagsPrisE = 100;
+	private int gebyr = 50;
 	
-	public Pris() {
-		
-	}
 	
-	public int regnPris(String kategori ,int antallDager) {
-		int sumPris = 0;
+	protected int regnPris(String kategori ,int antallDager) {
+		int sum = 0;
 		
 		switch (kategori) 
 		{
 		case "A":
-			sumPris = dagsPrisA * antallDager;
+			sum = dagsPrisA * antallDager;
 			break;
 		case "B":
-			sumPris = dagsPrisB * antallDager;
+			sum = dagsPrisB * antallDager;
 			break;
 		case "C":
-			sumPris = dagsPrisC * antallDager;
+			sum = dagsPrisC * antallDager;
 			break;
 		case "D":
-			sumPris = dagsPrisD * antallDager;
+			sum = dagsPrisD * antallDager;
 			break;
 		case "E":
-			sumPris = dagsPrisE * antallDager;
+			sum = dagsPrisE * antallDager;
 			break;
 		}
 		
-		return sumPris;
+		return sum;
+	}
+	
+	protected int regnPrisMedGebyr(String kategori, int antallDager) {
+		int sum = 0;
+		
+		switch (kategori) 
+		{
+		case "A":
+			sum = (dagsPrisA * antallDager) + gebyr;
+			break;
+		case "B":
+			sum = (dagsPrisB * antallDager) + gebyr;
+			break;
+		case "C":
+			sum = (dagsPrisC * antallDager) + gebyr;
+			break;
+		case "D":
+			sum = (dagsPrisD * antallDager) + gebyr;
+			break;
+		case "E":
+			sum = (dagsPrisE * antallDager) + gebyr;
+			break;
+		}
+		
+		return sum;
 	}
 }

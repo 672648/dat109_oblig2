@@ -3,20 +3,23 @@ package Service.oblig2;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class Utleie {
 	private String kredittNummer;
 	private String regNummer;
 	private int kilometerStand;
 	private LocalDate dato;
 	private LocalTime tid;
-	private Reservasjon resrvasjon;
+	private JFrame f;
 	
-	public Utleie(String kredittNummer, String rgsNummer, int kilometerStand, LocalDate dato, LocalTime tid) {
-		this.kredittNummer = kredittNummer;
+	public Utleie(String rgsNummer, int kilometerStand) {
+		this.kredittNummer = JOptionPane.showInputDialog(f, "Skriv inn kredittnummer");
 		this.regNummer = regNummer;
 		this.kilometerStand = kilometerStand;
-		this.dato = dato;
-		this.tid = tid;
+		this.dato = LocalDate.now();
+		this.tid = LocalTime.now();
 	}
 	
 	public String getKredittNummer() {
