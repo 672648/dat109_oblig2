@@ -12,6 +12,7 @@ import Service.oblig2.Sok;
 import Service.oblig2.Utleie;
 import personer.oblig2.Ansatt;
 import personer.oblig2.Kunde;
+import utilitet.dat109.Informasjon;
 import utsted.dat109.UtleieKontorer;
 
 public class SystemBilUtleie {
@@ -20,40 +21,17 @@ public class SystemBilUtleie {
 	private Kunde kunde;
 	private Ansatt ansatt;
 	private Sok sok;
-	private UtleieKontorer utleieKontor;
-	private List<Reservasjon> reserver;
-	private Utleie utleie;
-	private Retur retur;
+	private Informasjon info;
 	
 	public SystemBilUtleie() {
-		reserver = new ArrayList();
-		utleieKontor = new UtleieKontorer();
+		info = new Informasjon();
 		start();
 	}
 	
 	public void start() {
 		opprettBruker();
 		input = velgService();
-		
-		if (input == null) {
-			System.exit(0);
-		}
-		
-		switch (input) {
-		case "reserver bil":
-			sok = new Sok(kunde, utleieKontor);
-			//begynn å filtrer
-			//bekreft
-			reserver.add(sok.getReservasjon());
-			//Skriv melding at reservasjon har blitt bekreftet
-			break;
-		case "utleie bil":
-			//utleie = new Utleie();// hent kilometerstang og registreringsnummer
-			break;
-		case "returner bil":
-			retur = new Retur();
-			break;
-		}
+		utforService();
 	}
 	
 	private void opprettBruker() {
@@ -109,5 +87,24 @@ public class SystemBilUtleie {
 		}
 		
 		return input;
+	}
+	
+	private void utforService() {
+		switch (input) {
+		case "reserver bil":
+			sok = new Sok(kunde, utleieKontor);
+			sok.startSok();
+			info.leggTilReservasjon(sok.getReservasjon());
+			JOptionPane.showMessageDialog(f, "Reservasjonen din har blitt bekreftet! \nDin ID er: " + sok.getReservasjon().getId(););
+			break;
+		case "utleie bil":
+			input = JOptionPane.showInputDialog(f, "Skriv inn ID for reservasjonen din");
+			info.lagUtleie(); //Hent kilometerStand og registreringsnummer
+			
+			break;
+		case "returner bil":
+			
+			break;
+		}
 	}
 }

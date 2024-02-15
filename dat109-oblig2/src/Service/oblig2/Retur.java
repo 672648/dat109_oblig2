@@ -8,11 +8,29 @@ public class Retur extends Pris{
 	private LocalDate dato;
 	private LocalTime klokkeslett;
 	private int kilometerStand;
+	private int regning;
 	
-	public int regning(Utleie utleie, boolean utleieSted) {
-		if (utleieSted) {
-			int regning = regnPris("hei", 3);
+	public Retur(int kilometerStand, String kategori, int antallDager, boolean sammeAdresse) {
+		this.dato = LocalDate.now();
+		this.klokkeslett = LocalTime.now();
+		this.kilometerStand = kilometerStand;
+		this.regning = regning(kategori, antallDager, sammeAdresse);
+	}
+	
+	private int regning(String kategori, int antallDager, boolean sammeLokasjon) {
+		int pris = 0;
+		
+		if (sammeLokasjon) {
+			pris = regnPris(kategori, 3);
+		} 
+		else {
+			pris = regnPrisMedGebyr(kategori, antallDager);
 		}
 		
+		return pris;
+	}
+	
+	public int getRegning() {
+		return this.regning;
 	}
 }
