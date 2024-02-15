@@ -39,4 +39,33 @@ public class Utilitet {
 		}
 		return regnr;
 	}
+
+	public static String[] merker = {
+			"Honda",
+			"Mazda",
+			"Toyota",
+			"Volvo",
+			"Saab",
+			"BMW",
+			"Lamborghini"
+	};
+	
+	public static String[] modeller = {
+			"Superbil",
+			"Duperbil",
+			"Modell 1887",
+			"Freshbil",
+			"Fokus"
+	};
+	
+	public static String[] farger = {
+			"Gul bil",
+			"Rød",
+			"Grønn",
+			"Blå",
+			"Svart",
+			"Grå",
+			"Hvit"
+			
+	};
 }

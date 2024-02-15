@@ -1,5 +1,9 @@
 package personer.oblig2;
 
+import java.util.List;
+
+import Service.oblig2.Retur;
+import Service.oblig2.Utleie;
 import utilitet.dat109.Utilitet;
 import utsted.dat109.UtleieKontor;
 import utsted.dat109.UtleieKontorer;
@@ -7,9 +11,10 @@ import utsted.dat109.UtleieKontorer;
 public class Ansatt {
 
 	private UtleieKontorer kontorer;
+	private Retur retur;
 
-	public Ansatt() {
-		kontorer = new UtleieKontorer();
+	public Ansatt(UtleieKontorer kontorer) {
+		this.kontorer = kontorer;
 	}
 
 	public void startKontor() {
@@ -55,9 +60,11 @@ public class Ansatt {
 		kontorer.hentKontorAdresse(gateAdrese).get(0).lagBil(regnr, merke, modell, farge, kategori, km);
 	}
 	
-	public void lagRetur(int regNr ,int antallDager) {
-		List<Utleie> utleier = info.getUtleieListe.stream().filter(utleie -> utleie == regNr).toList();
-		Utleie utleie = utleie.get(0);
-		
+	public void lagRetur(int km , String kategori, int antallDager, boolean sammeAdresse) {
+		retur = new Retur(km, kategori, antallDager, sammeAdresse);
+	}
+	
+	public Retur getRetur() {
+		return retur;
 	}
 }
