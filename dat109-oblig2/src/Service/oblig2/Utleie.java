@@ -14,7 +14,7 @@ public class Utleie {
 	private LocalTime tid;
 	private JFrame f;
 	
-	public Utleie(String rgsNummer, int kilometerStand) {
+	public Utleie(String regNummer, int kilometerStand) {
 		this.kredittNummer = JOptionPane.showInputDialog(f, "Skriv inn kredittnummer");
 		this.regNummer = regNummer;
 		this.kilometerStand = kilometerStand;
