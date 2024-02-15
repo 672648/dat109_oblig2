@@ -12,6 +12,7 @@ public class Reservasjon {
 	private int antallDager;
 	private String kategori;
 	private String gateAdresse;
+	private int id;
 
 	public Reservasjon(Kunde kunde,LocalDate startDato, LocalDate sluttDato, int antallDager, String kategori, String gateAdresse) {
 		this.kunde = kunde;
@@ -20,8 +21,10 @@ public class Reservasjon {
 		this.antallDager = antallDager;
 		this.kategori = kategori;
 		this.gateAdresse = gateAdresse;
-		System.out.println(kategori + " " + gateAdresse);
+		id = (int) Math.random()*9999;
 	}
 	
-
+	public int getId() {
+		return id;
+	}
 }

@@ -20,7 +20,7 @@ import utsted.dat109.Kategori;
 import utsted.dat109.UtleieKontor;
 import utsted.dat109.UtleieKontorer;
 
-public class Sok implements ISok {
+public class Sok extends Pris implements ISok{
 
 	private UtleieKontorer kontorer;
 	private Kunde kunde;
@@ -44,6 +44,19 @@ public class Sok implements ISok {
 	
 	public Reservasjon getReservasjon() {
 		return reservasjon;
+	}
+	
+	public void startSok() {
+		JFrame f = new JFrame();
+		String[] kategori = {"A", "B", "C", "D", "E", ""};
+		String valgtKategori = (String) JOptionPane.showInputDialog(f, "Liste av valg", "Velg kategori", JOptionPane.QUESTION_MESSAGE, null, kategori, kategori[0]);
+		
+		LocalDate startDato = LocalDate.parse(JOptionPane.showInputDialog(f, "Skriv inn start dato"));
+		LocalDate sluttDato = LocalDate.parse(JOptionPane.showInputDialog(f, "Skriv inn slutt dato"));
+		
+		String adresse = JOptionPane.showInputDialog(f, "skriv inn adresse");
+		
+		sok(valgtKategori, startDato, sluttDato, adresse);
 	}
 	@Override
 	public void sok(String kategori, LocalDate startDato, LocalDate sluttDato, String adresse) {
@@ -71,14 +84,13 @@ public class Sok implements ISok {
 	}
 
 	public int[] lagDropDown(List<UtleieKontor> kontorer, int antallDager, String[] kategoriArr) {
-		Pris pris = new Pris();
 		String[] dropDownValg = new String[kontorer.size()*5];
 
 		for (int i = 0; i < kontorer.size(); i++) {
 			for(int j = 0; j < 5; j++) {
 				int q = i*5+j;
 				dropDownValg[q] = kontorer.get(i).getAdresse() + ": " + kontorer.get(i).getKategori(j) + " "
-						+ pris.regnPris(kategoriArr[j], antallDager);
+						+ regnPris(kategoriArr[j], antallDager);
 			}
 		}
 		JFrame frame = new JFrame();

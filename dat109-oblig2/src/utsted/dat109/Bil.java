@@ -11,17 +11,19 @@ public class Bil {
 	private String modell;
 	private String farge;
 	private String kategori;
-	private String utleiekontor;
+	private String gateAdresse;
+	private int km;
 	//private List<LocalDate> startDato;
 	//private List<LocalDate> sluttDato;
 
-	public Bil(String regnr, String merke, String modell, String farge, String kategori, String utleiekontor) {
+	public Bil(String regnr, String merke, String modell, String farge, String kategori, String gateAdresse, int km) {
 		this.regnr = regnr;
 		this.merke = merke;
 		this.modell = modell;
 		this.farge = farge;
 		this.kategori = kategori;
-		this.utleiekontor = utleiekontor;
+		this.gateAdresse = gateAdresse;
+		this.km = km;
 		//this.startDato = new ArrayList<LocalDate>();
 		//this.sluttDato = new ArrayList<LocalDate>();
 
@@ -103,11 +105,19 @@ public class Bil {
 	}
 
 	public String getUtleiekontor() {
-		return utleiekontor;
+		return gateAdresse;
 	}
 
-	public void setUtleiekontor(String utleiekontor) {
-		this.utleiekontor = utleiekontor;
+	public void setUtleiekontor(String gateAdresse) {
+		this.gateAdresse = gateAdresse;
+	}
+	
+	public int getKm() {
+		return km;
+	}
+
+	public void setKm(int km) {
+		this.km = km;
 	}
 
 }

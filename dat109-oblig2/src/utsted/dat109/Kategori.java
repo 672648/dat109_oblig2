@@ -1,16 +1,13 @@
 package utsted.dat109;
 
-public class Kategori{
-	public enum String {
-		A, B, C , D , E
-	}
-	
+public class Kategori {
+
 	private int antallA;
 	private int antallB;
 	private int antallC;
 	private int antallD;
 	private int antallE;
-	
+
 	public Kategori() {
 		this.antallA = 0;
 		this.antallB = 0;
@@ -26,7 +23,7 @@ public class Kategori{
 	public void inkAntallA() {
 		this.antallA++;
 	}
-	
+
 	public void dekAntallA() {
 		this.antallA--;
 	}
@@ -38,7 +35,7 @@ public class Kategori{
 	public void inkAntallB() {
 		this.antallB++;
 	}
-	
+
 	public void dekAntallB() {
 		this.antallB--;
 	}
@@ -50,7 +47,7 @@ public class Kategori{
 	public void inkAntallC() {
 		this.antallC++;
 	}
-	
+
 	public void dekAntallC() {
 		this.antallC--;
 	}
@@ -62,6 +59,7 @@ public class Kategori{
 	public void inkAntallD() {
 		this.antallD++;
 	}
+
 	public void dekAntallD() {
 		this.antallD--;
 	}
@@ -73,9 +71,61 @@ public class Kategori{
 	public void inkAntallE() {
 		this.antallE++;
 	}
-	
+
 	public void dekAntallE() {
 		this.antallE--;
 	}
+
+	public String getKategori(int teller) {
+		String kategoriStr = "";
+
+		switch (teller) {
+		case 0:
+			kategoriStr = "A";
+			break;
+
+		case 1:
+			kategoriStr = "B";
+			break;
+
+		case 2:
+			kategoriStr = "C";
+			break;
+
+		case 3:
+			kategoriStr = "D";
+			break;
+
+		case 4:
+			kategoriStr = "E";
+			break;
+		}
+		return kategoriStr;
+	}
 	
+	public String getAntall(int teller) {
+		String kategoriStr = "";
+		switch(teller) {
+		case 0:
+			kategoriStr = "antall: " + getAntallA() + " i kategori";
+			break;
+			
+		case 1:
+			kategoriStr = "antall: " + getAntallB() + " i kategori";
+			break;
+			
+		case 2:
+			kategoriStr = "antall: " + getAntallC() + "i kategori";
+			break;
+			
+		case 3:
+			kategoriStr = "antall: " + getAntallD() + "i kategori";
+			break;
+			
+		case 4:
+			kategoriStr = "antall:" +  getAntallE() + "i kategori";
+			break;
+		}
+	}
+
 }
