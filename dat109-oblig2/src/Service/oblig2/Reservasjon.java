@@ -27,4 +27,16 @@ public class Reservasjon {
 	public int getId() {
 		return id;
 	}
+	
+	public String getGateAdresse() {
+		return this.gateAdresse;
+	}
+	
+	public String getKategori() {
+		return this.kategori;
+	}
+	
+	public int getAntallDager() {
+		return this.antallDager;
+	}
 }

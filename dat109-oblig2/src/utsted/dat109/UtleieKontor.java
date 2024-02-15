@@ -43,6 +43,10 @@ public class UtleieKontor {
 		return soket;
 	}
 	
+	public Bil hentBilReg(String reg) {
+		return biler.stream().filter(bil -> bil.getRegnr().equals(reg)).toList().get(0));
+	}
+	
 	public String getKategori(int teller) {
 		String kategoriStr = kategori.getKategori(teller);
 		return kategoriStr;
