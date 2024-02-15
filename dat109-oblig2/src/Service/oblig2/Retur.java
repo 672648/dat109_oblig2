@@ -22,7 +22,7 @@ public class Retur extends Pris{
 		
 		if (sammeLokasjon) {
 			pris = regnPris(kategori, 3);
-		} 
+		}
 		else {
 			pris = regnPrisMedGebyr(kategori, antallDager);
 		}
