@@ -2,6 +2,9 @@ package personer.oblig2;
 
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import Service.oblig2.Retur;
 import Service.oblig2.Utleie;
 import utilitet.dat109.Utilitet;
@@ -12,6 +15,7 @@ public class Ansatt {
 
 	private UtleieKontorer kontorer;
 	private Retur retur;
+	private JFrame f;
 
 	public Ansatt(UtleieKontorer kontorer) {
 		this.kontorer = kontorer;
@@ -72,24 +76,24 @@ public class Ansatt {
 		return retur;
 	}
 	
-	private String[] opprettBil() {
+	public String[] opprettBil() {
 		String[] bilVerdier = new String[7];
-		bilVerdier[0] = JOptionPane.showInputDialog(f, "Skriv inn gate adresse");
-		bilVerdier[1] = JOptionPane.showInputDialog(f, "Skriv inn registreringsnummer");
-		bilVerdier[2] = JOptionPane.showInputDialog(f, "Skriv inn gate merke");
-		bilVerdier[3] = JOptionPane.showInputDialog(f, "Skriv inn modell");
-		bilVerdier[4] = JOptionPane.showInputDialog(f, "Skriv inn gate farge");
-		bilVerdier[5] = JOptionPane.showInputDialog(f, "Skriv inn gate kategori");
-		bilVerdier[6] = JOptionPane.showInputDialog(f, "Skriv inn kilometerstand");
+		bilVerdier[6] = (String) JOptionPane.showInputDialog(f, "Skriv inn gate adresse");
+		bilVerdier[0] = (String) JOptionPane.showInputDialog(f, "Skriv inn registreringsnummer");
+		bilVerdier[1] = (String) JOptionPane.showInputDialog(f, "Skriv inn merke");
+		bilVerdier[2] = (String) JOptionPane.showInputDialog(f, "Skriv inn modell");
+		bilVerdier[3] = (String) JOptionPane.showInputDialog(f, "Skriv inn farge");
+		bilVerdier[4] = (String) JOptionPane.showInputDialog(f, "Skriv inn kategori");
+		bilVerdier[5] = (String) JOptionPane.showInputDialog(f, "Skriv inn kilometerstand");
 
 		return bilVerdier;
 	}
 	
-	private String[] opprettKontor() {
+	public String[] opprettKontor() {
 		String[] kontorVerdier = new String[3];
-		kontorVerdier[0] = JOptionPane.showInputDialog(f, "Skriv inn gate adresse");
-		kontorVerdier[1] = JOptionPane.showInputDialog(f, "Skriv inn poststed");
-		kontorVerdier[2] = JOptionPane.showInputDialog(f, "Skriv inn postnummer");
+		kontorVerdier[0] = (String) JOptionPane.showInputDialog(f, "Skriv inn gate adresse");
+		kontorVerdier[1] = (String) JOptionPane.showInputDialog(f, "Skriv inn poststed");
+		kontorVerdier[2] = (String) JOptionPane.showInputDialog(f, "Skriv inn postnummer");
 		return kontorVerdier;
 	}
 }

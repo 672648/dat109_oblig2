@@ -126,6 +126,7 @@ public class Kategori {
 			kategoriStr = "antall:" +  getAntallE() + "i kategori";
 			break;
 		}
+		return kategoriStr;
 	}
 
 }

@@ -30,9 +30,11 @@ public class Informasjon {
 		utleieListe.add(utleie);
 	}
 	
-	public void leggTilReservasjon() {
-		reservasjonListe.add(new Reservasjon(utleieKontor.getSokStartDato(), utleieKontor.getSokSluttDato(),
-				utleieKontor.getSokAntallDager(), utleieKontor.getSokKategori(), utleieKontor.getSokGateAdresse()));
+	public int leggTilReservasjon() {
+		Reservasjon reservasjon = new Reservasjon(utleieKontor.getSokStartDato(), utleieKontor.getSokSluttDato(),
+				utleieKontor.getSokAntallDager(), utleieKontor.getSokKategori(), utleieKontor.getSokAdresse());
+		reservasjonListe.add(reservasjon);
+		return reservasjon.getId();
 	}
 	
 	public UtleieKontor getKontor(String adresse) {
@@ -51,6 +53,14 @@ public class Informasjon {
 		return this.utleieKontor;
 	}
 	public void sok(){
-		return utleieKontor.startSok();
+		utleieKontor.sok();
+	}
+	
+	public void leggTilKontorer(String gateAdress, String postSted, int postNummer) {
+		utleieKontor.lagKontorer(gateAdress, postSted, postNummer);
+	}
+	
+	public void leggTilBil(String[] bilVerdier) {
+		utleieKontor.hentKontorAdresse(bilVerdier[6]).get(0).lagBil(bilVerdier[0], bilVerdier[1], bilVerdier[2], bilVerdier[3], bilVerdier[4], Integer.parseInt(bilVerdier[5]));
 	}
 }

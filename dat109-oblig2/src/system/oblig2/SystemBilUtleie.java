@@ -21,10 +21,7 @@ import utsted.dat109.UtleieKontorer;
 public class SystemBilUtleie {
 	private JFrame f;
 	private String input;
-	private String adresse;
-	private Kunde kunde;
 	private Ansatt ansatt;
-	private Sok sok;
 	private Informasjon info;
 	private UtleieKontor kontor;
 	
@@ -121,23 +118,26 @@ public class SystemBilUtleie {
 		case "Returner bil":
 			returnerBil();
 			break;
-		case "Opprett kontor":
-			lagKontor(ansatt.opprettKontor());
+		case "Opprett ny kontor":
+			System.out.println("here");
+			String[] kontorVerdier = ansatt.opprettKontor();
+			System.out.println(kontorVerdier[0]);
+			lagKontor(kontorVerdier);
 			break;
-		case "Opprett bil":
-			lagBil(ansatt.OpprettBil());
+		case "Opprett ny bil":
+			lagBil(ansatt.opprettBil());
 			break;
 		}
 	}
 	
 	private void reserverBil() {
-		info.leggTilReservasjon(info.sok());
+		info.sok();
 		/*
 		sok = new Sok(kunde, info.getUtleieKontor());
 		sok.startSok();
 		System.out.println(sok.getReservasjon().getId());
 		info.leggTilReservasjon(sok.getReservasjon());*/
-		JOptionPane.showMessageDialog(f, "Reservasjonen din har blitt bekreftet! \nDin ID er: " + sok.getReservasjon().getId());
+		JOptionPane.showMessageDialog(f, "Reservasjonen din har blitt bekreftet! \nDin ID er: " + info.leggTilReservasjon());
 	}
 	
 	private void utleieBil() {
@@ -204,10 +204,10 @@ public class SystemBilUtleie {
 	}*/
 	
 	public void lagKontor(String[] kontorVerdier) {
-		kontorer.lagKontorer(kontorVerdier[0], kontorVerdier[1], Integer.parseInt(kontorVerdier[2]));
+		info.leggTilKontorer(kontorVerdier[0], kontorVerdier[1], Integer.parseInt(kontorVerdier[2]));
 	}
 
 	public void lagBil(String[] bilVerdier) {
-		kontorer.hentKontorAdresse(gateAdrese).get(0).lagBil(bilVerdier[0], bilVerdier[1], bilVerdier[2], bilVerdier[3], bilVerdier[4], Integer.parseInt(bilVerdier[5]));
+		info.leggTilBil(bilVerdier);
 	}
 }

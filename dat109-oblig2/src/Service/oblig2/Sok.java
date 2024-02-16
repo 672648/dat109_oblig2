@@ -20,7 +20,7 @@ import utsted.dat109.Kategori;
 import utsted.dat109.UtleieKontor;
 import utsted.dat109.UtleieKontorer;
 
-public class Sok extends Pris implements ISok{
+public class Sok extends Pris {
 
 	private UtleieKontorer kontorer;
 	private LocalDate startDato;
@@ -34,7 +34,6 @@ public class Sok extends Pris implements ISok{
 		
 	}
 
-	@Override
 	public List<UtleieKontor> hentKontorListAdresse(String adresse) {
 		return kontorer.hentKontorAdresse(adresse);
 	}
@@ -59,8 +58,8 @@ public class Sok extends Pris implements ISok{
 		
 		sok(valgtKategori, startDato, sluttDato, adresse);
 	}
-	@Override
-	public void sok(String kategori, LocalDate startDato, LocalDate sluttDato, String adresse) {
+
+	private void sok(String kategori, LocalDate startDato, LocalDate sluttDato, String adresse) {
 		List<UtleieKontor> kontorer = hentKontorListAdresse(adresse);
 		int antallDager = (int) ChronoUnit.DAYS.between(startDato, sluttDato);
 		
@@ -78,13 +77,16 @@ public class Sok extends Pris implements ISok{
 		int[] pos = lagDropDown(kontorer, antallDager, kategoriArr);
 		int kontorPos = pos[0];
 		int kategoriPos = pos[1];
-		kontorer.get(kontorPos).reservert(kategori);
-		reserver(startDato, sluttDato, antallDager, kontorer.get(kontorPos).getKategori(kategoriPos), kontorer.get(kontorPos).getAdresse());
-		
+		kontorer.get(kontorPos).reservert(kategori);//kanskje fjerne denne linjen
+		this.startDato = startDato;
+		this.sluttDato = sluttDato;
+		this.antallDager = antallDager;
+		this.kategori = kontorer.get(kontorPos).getKategori(kategoriPos);
+		this.gateAdresse = kontorer.get(kontorPos).getAdresse();
 
 	}
 
-	public int[] lagDropDown(List<UtleieKontor> kontorer, int antallDager, String[] kategoriArr) {
+	private int[] lagDropDown(List<UtleieKontor> kontorer, int antallDager, String[] kategoriArr) {
 		String[] dropDownValg = new String[kontorer.size()*5];
 
 		for (int i = 0; i < kontorer.size(); i++) {
