@@ -122,19 +122,21 @@ public class SystemBilUtleie {
 			returnerBil();
 			break;
 		case "Opprett kontor":
-			opprettKontor();
+			lagKontor(ansatt.opprettKontor());
 			break;
 		case "Opprett bil":
-			opprettBil();
+			lagBil(ansatt.OpprettBil());
 			break;
 		}
 	}
 	
 	private void reserverBil() {
+		info.leggTilReservasjon(info.sok());
+		/*
 		sok = new Sok(kunde, info.getUtleieKontor());
 		sok.startSok();
 		System.out.println(sok.getReservasjon().getId());
-		info.leggTilReservasjon(sok.getReservasjon());
+		info.leggTilReservasjon(sok.getReservasjon());*/
 		JOptionPane.showMessageDialog(f, "Reservasjonen din har blitt bekreftet! \nDin ID er: " + sok.getReservasjon().getId());
 	}
 	
@@ -181,15 +183,15 @@ public class SystemBilUtleie {
 		}
 	}
 	
-	private void opprettKontor() {
+	/*private void opprettKontor() {
 		adresse = JOptionPane.showInputDialog(f, "Skriv inn gate adresse");
 		String postSted = JOptionPane.showInputDialog(f, "Skriv inn poststed");
 		String postNummer = JOptionPane.showInputDialog(f, "Skriv inn postnummer");
 		int postNr = Integer.parseInt(postNummer);
 		ansatt.lagKontor(adresse, postSted, postNr);
-	}
+	}*/
 	
-	private void opprettBil() {
+	/*private void opprettBil() {
 		adresse = JOptionPane.showInputDialog(f, "Skriv inn gate adresse");
 		String regNummer = JOptionPane.showInputDialog(f, "Skriv inn registreringsnummer");
 		String merke = JOptionPane.showInputDialog(f, "Skriv inn gate merke");
@@ -199,5 +201,13 @@ public class SystemBilUtleie {
 		String kilometerStand = JOptionPane.showInputDialog(f, "Skriv inn kilometerstand");
 		int km = Integer.parseInt(kilometerStand);
 		ansatt.lagBil(adresse, regNummer, merke, modell, farge, kategori, km);
+	}*/
+	
+	public void lagKontor(String[] kontorVerdier) {
+		kontorer.lagKontorer(kontorVerdier[0], kontorVerdier[1], Integer.parseInt(kontorVerdier[2]));
+	}
+
+	public void lagBil(String[] bilVerdier) {
+		kontorer.hentKontorAdresse(gateAdrese).get(0).lagBil(bilVerdier[0], bilVerdier[1], bilVerdier[2], bilVerdier[3], bilVerdier[4], Integer.parseInt(bilVerdier[5]));
 	}
 }

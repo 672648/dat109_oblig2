@@ -4,12 +4,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import Service.oblig2.Sok;
+
 public class UtleieKontorer {
 	
 	private List<UtleieKontor> kontorer;
+	private Sok sok;
 	
 	public UtleieKontorer() {
 		kontorer = new ArrayList<UtleieKontor>();
+		sok = new Sok(this);
 	}
 
 	public List<UtleieKontor> hentKontorAdresse(String gateAdresse){
@@ -26,5 +30,27 @@ public class UtleieKontorer {
 	
 	public List<UtleieKontor> hentKontor(){
 		return kontorer;
+	}
+	
+	public String getSokAdresse(){
+		return sok.getGateAdresse();
+	}
+	public LocalDate getSokStartDato() {
+		return sok.getStartDato();
+	}
+
+	public String getSokKategori() {
+		return sok.getKategori();
+	}
+
+	public LocalDate getSokSluttDato() {
+		return sok.getSluttDato();
+	}
+	public int getSokAntallDager() {
+		return sok.getAntallDager();
+	}
+	
+	public void sok(){
+		sok.startSok();
 	}
 }

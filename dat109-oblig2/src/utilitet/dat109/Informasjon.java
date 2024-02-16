@@ -30,8 +30,9 @@ public class Informasjon {
 		utleieListe.add(utleie);
 	}
 	
-	public void leggTilReservasjon(Reservasjon reservasjon) {
-		reservasjonListe.add(reservasjon);
+	public void leggTilReservasjon() {
+		reservasjonListe.add(new Reservasjon(utleieKontor.getSokStartDato(), utleieKontor.getSokSluttDato(),
+				utleieKontor.getSokAntallDager(), utleieKontor.getSokKategori(), utleieKontor.getSokGateAdresse()));
 	}
 	
 	public UtleieKontor getKontor(String adresse) {
@@ -48,5 +49,8 @@ public class Informasjon {
 	
 	public UtleieKontorer getUtleieKontor() {
 		return this.utleieKontor;
+	}
+	public void sok(){
+		return utleieKontor.startSok();
 	}
 }

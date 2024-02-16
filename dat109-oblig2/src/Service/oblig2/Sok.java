@@ -23,12 +23,14 @@ import utsted.dat109.UtleieKontorer;
 public class Sok extends Pris implements ISok{
 
 	private UtleieKontorer kontorer;
-	private Kunde kunde;
-	private Reservasjon reservasjon;
+	private LocalDate startDato;
+	private String kategori;
+	private String gateAdresse;
+	private LocalDate sluttDato;
+	private int antallDager;
 
-	public Sok(Kunde kunde, UtleieKontorer utleiekontorer) {
+	public Sok(UtleieKontorer utleiekontorer) {
 		kontorer = utleiekontorer;
-		kunde = kunde;
 		
 	}
 
@@ -37,14 +39,13 @@ public class Sok extends Pris implements ISok{
 		return kontorer.hentKontorAdresse(adresse);
 	}
 
-	@Override
-	public void reserver(LocalDate startDato,LocalDate sluttDato, int antallDager, String kategori, String gateAdresse) {
+	/*public void reserver(LocalDate startDato,LocalDate sluttDato, int antallDager, String kategori, String gateAdresse) {
 		reservasjon = new Reservasjon(kunde,startDato, sluttDato, antallDager, kategori, gateAdresse);
-	}
+	}*/
 	
-	public Reservasjon getReservasjon() {
+	/*public Reservasjon getReservasjon() {
 		return reservasjon;
-	}
+	}*/
 	
 	public void startSok() {
 		JFrame f = new JFrame();
@@ -110,6 +111,26 @@ public class Sok extends Pris implements ISok{
 		pos[0] = posMulig/5;
 		pos[1] = posMulig % 5;
 		return pos;
+	}
+	
+	public LocalDate getStartDato() {
+		return startDato;
+	}
+
+	public String getKategori() {
+		return kategori;
+	}
+
+	public LocalDate getSluttDato() {
+		return sluttDato;
+	}
+
+	public int getAntallDager() {
+		return antallDager;
+	}
+
+	public String getGateAdresse() {
+		return gateAdresse;
 	}
 
 }

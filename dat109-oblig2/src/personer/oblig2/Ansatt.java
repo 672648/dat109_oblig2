@@ -71,4 +71,25 @@ public class Ansatt {
 	public Retur getRetur() {
 		return retur;
 	}
+	
+	private String[] opprettBil() {
+		String[] bilVerdier = new String[7];
+		bilVerdier[0] = JOptionPane.showInputDialog(f, "Skriv inn gate adresse");
+		bilVerdier[1] = JOptionPane.showInputDialog(f, "Skriv inn registreringsnummer");
+		bilVerdier[2] = JOptionPane.showInputDialog(f, "Skriv inn gate merke");
+		bilVerdier[3] = JOptionPane.showInputDialog(f, "Skriv inn modell");
+		bilVerdier[4] = JOptionPane.showInputDialog(f, "Skriv inn gate farge");
+		bilVerdier[5] = JOptionPane.showInputDialog(f, "Skriv inn gate kategori");
+		bilVerdier[6] = JOptionPane.showInputDialog(f, "Skriv inn kilometerstand");
+
+		return bilVerdier;
+	}
+	
+	private String[] opprettKontor() {
+		String[] kontorVerdier = new String[3];
+		kontorVerdier[0] = JOptionPane.showInputDialog(f, "Skriv inn gate adresse");
+		kontorVerdier[1] = JOptionPane.showInputDialog(f, "Skriv inn poststed");
+		kontorVerdier[2] = JOptionPane.showInputDialog(f, "Skriv inn postnummer");
+		return kontorVerdier;
+	}
 }
