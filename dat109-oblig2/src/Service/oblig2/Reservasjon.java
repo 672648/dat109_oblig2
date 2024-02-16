@@ -21,7 +21,7 @@ public class Reservasjon {
 		this.antallDager = antallDager;
 		this.kategori = kategori;
 		this.gateAdresse = gateAdresse;
-		id = (int) Math.random()*9999;
+		id = (int) (Math.random()*9999);
 	}
 	
 	public int getId() {

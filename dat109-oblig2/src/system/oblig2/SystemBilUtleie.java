@@ -92,13 +92,12 @@ public class SystemBilUtleie {
 			
 			break;
 		case "ansatt":
-			service = new String[6];
+			service = new String[5];
 			service[0] = "Reserver bil"; 
 			service[1] = "Utleie bil";
 			service[2] = "Returner bil";
-			service[3] = "Opprett kunde";
-			service[4] = "Opprett ny kontor";
-			service[5] = "Opprett ny bil";
+			service[3] = "Opprett ny kontor";
+			service[4] = "Opprett ny bil";
 			input = (String) JOptionPane.showInputDialog(f, "Service liste", "Velg hvilken service du vil bruke", JOptionPane.QUESTION_MESSAGE, null, service, service[0]);
 			
 			if (input == null) {
@@ -113,6 +112,7 @@ public class SystemBilUtleie {
 	private void utforService(String input) {
 		switch (input) {
 		case "Reserver bil":
+			kunde = new Kunde();
 			reserverBil();
 			break;
 		case "Utleie bil":
@@ -120,9 +120,6 @@ public class SystemBilUtleie {
 			break;
 		case "Returner bil":
 			returnerBil();
-			break;
-		case "Opprett kunde":
-			kunde = new Kunde();
 			break;
 		case "Opprett kontor":
 			opprettKontor();
@@ -136,6 +133,7 @@ public class SystemBilUtleie {
 	private void reserverBil() {
 		sok = new Sok(kunde, info.getUtleieKontor());
 		sok.startSok();
+		System.out.println(sok.getReservasjon().getId());
 		info.leggTilReservasjon(sok.getReservasjon());
 		JOptionPane.showMessageDialog(f, "Reservasjonen din har blitt bekreftet! \nDin ID er: " + sok.getReservasjon().getId());
 	}

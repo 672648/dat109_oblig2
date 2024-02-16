@@ -44,7 +44,8 @@ public class UtleieKontor {
 	}
 	
 	public Bil hentBilReg(String reg) {
-		return biler.stream().filter(bil -> bil.getRegnr().equals(reg)).toList().get(0));
+		List<Bil> bilListe = biler.stream().filter(bil -> bil.getRegnr().equals(reg)).toList();
+		return bilListe.get(0);
 	}
 	
 	public String getKategori(int teller) {

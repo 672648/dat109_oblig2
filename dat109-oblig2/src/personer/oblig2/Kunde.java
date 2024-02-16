@@ -32,9 +32,6 @@ public class Kunde {
 		this.tlf = input;//husk å legge på sjekk for at tlf er int eller behold dette som string
 	}
 	
-	public void reserver() {}
-	
-	public void leie() {}
 	
 	public String getFornavn() {
 		return this.fornavn;

@@ -22,32 +22,34 @@ public class Ansatt {
 			int tilfeldigPoststed = (int) Math.random() * 5;
 			int tilfeldigPostNr = (int) Math.random() * (9999 - 1000) + 1000;
 			kontorer.lagKontorer(Utilitet.gateAdresser[i], Utilitet.postSteder[tilfeldigPoststed], tilfeldigPostNr);
-			System.out.println(kontorer.hentKontor().get(i).getAdresse());
 			genererBiler();
 		}
 	}
 
 	public void genererBiler() {
 		for (UtleieKontor kontor : kontorer.hentKontor()) {
-			kontor.lagBil(regNr(), merke(), farge(), kontor.getKategori((int) Math.random() * 5), gateAdresse(), km());
-			System.out.println(kontor.faListe("A").get(0).getModell());
+			kontor.lagBil(regNr(), merke(), modell(), farge(), kontor.getKategori((int) Math.random() * 5), km());
 		}
 	}
 
 	public String regNr() {
-		return Utilitet.regNr[(int) Math.random() * (Utilitet.regNr.length-1)];
+		return Utilitet.regNr[(int) Math.random() * 50];
+	}
+	
+	public String modell() {
+		return Utilitet.modeller[(int) Math.random() * 5];
 	}
 
 	public String merke() {
-		return Utilitet.merker[(int) Math.random() * (Utilitet.merker.length-1)];
+		return Utilitet.merker[(int) Math.random() * 7];
 	}
 
 	public String farge() {
-		return Utilitet.farger[(int) Math.random() * (Utilitet.farger.length-1)];
+		return Utilitet.farger[(int) Math.random() * 7];
 	}
 
 	public String gateAdresse() {
-		return Utilitet.gateAdresser[(int) Math.random() * (Utilitet.gateAdresser.length-1)];
+		return Utilitet.gateAdresser[(int) Math.random() * 8];
 	}
 
 	public int km() {
@@ -59,7 +61,6 @@ public class Ansatt {
 	}
 	
 	public void lagBil(String gateAdrese, String regnr, String merke, String modell, String farge, String kategori, int km) {
-		System.out.println("kom hit");
 		kontorer.hentKontorAdresse(gateAdrese).get(0).lagBil(regnr, merke, modell, farge, kategori, km);
 	}
 	
