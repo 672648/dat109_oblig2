@@ -13,8 +13,6 @@ public class Bil {
 	private String kategori;
 	private String gateAdresse;
 	private int km;
-	//private List<LocalDate> startDato;
-	//private List<LocalDate> sluttDato;
 
 	public Bil(String regnr, String merke, String modell, String farge, String kategori, String gateAdresse, int km) {
 		this.regnr = regnr;
@@ -24,45 +22,8 @@ public class Bil {
 		this.kategori = kategori;
 		this.gateAdresse = gateAdresse;
 		this.km = km;
-		//this.startDato = new ArrayList<LocalDate>();
-		//this.sluttDato = new ArrayList<LocalDate>();
-
 	}
 
-	/*public boolean leggTilDato(LocalDate startDato, LocalDate sluttDato) {
-		if (this.startDato != null && this.sluttDato != null) {
-
-			if(sjekkStartDato(sluttDato) && sjekkSluttDato(startDato)) {
-				return false;
-			}
-		}
-		this.startDato.add(startDato);
-		this.sluttDato.add(sluttDato);
-
-		return true;
-	}*/
-	
-	/*public boolean sjekkStartDato(LocalDate sluttDato) {
-		boolean erFeil = false;
-		for (LocalDate tid : this.startDato) {
-			if (tid.isBefore(sluttDato)) {
-				erFeil = true;
-				break;
-			}
-		}
-		return erFeil;
-	}*/
-	
-	/*public boolean sjekkSluttDato(LocalDate startDato) {
-		boolean erFeil = false;
-		for (LocalDate tid : this.sluttDato) {
-			if (tid.isAfter(startDato)) {
-				erFeil = true;
-				break;
-			}
-		}
-		return erFeil;
-	}*/
 	
 	public String getRegnr() {
 		return regnr;

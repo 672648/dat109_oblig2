@@ -2,10 +2,10 @@ package utilitet.dat109;
 
 public class Pris {
 	private int dagsPrisA = 100;
-	private int dagsPrisB = 100;
-	private int dagsPrisC = 100;
-	private int dagsPrisD = 100;
-	private int dagsPrisE = 100;
+	private int dagsPrisB = 150;
+	private int dagsPrisC = 190;
+	private int dagsPrisD = 200;
+	private int dagsPrisE = 300;
 	private int gebyr = 50;
 	
 	

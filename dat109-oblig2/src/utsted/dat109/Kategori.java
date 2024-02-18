@@ -103,30 +103,30 @@ public class Kategori {
 		return kategoriStr;
 	}
 	
-	public String getAntall(int teller) {
-		String kategoriStr = "";
+	public int getAntall(int teller) {
+		int antall = 0;
 		switch(teller) {
 		case 0:
-			kategoriStr = "antall: " + getAntallA() + " i kategori";
+			antall = getAntallA();
 			break;
 			
 		case 1:
-			kategoriStr = "antall: " + getAntallB() + " i kategori";
+			antall = getAntallB();
 			break;
 			
 		case 2:
-			kategoriStr = "antall: " + getAntallC() + "i kategori";
+			antall =getAntallC();
 			break;
 			
 		case 3:
-			kategoriStr = "antall: " + getAntallD() + "i kategori";
+			antall = getAntallD();
 			break;
 			
 		case 4:
-			kategoriStr = "antall:" +  getAntallE() + "i kategori";
+			antall = getAntallE();
 			break;
 		}
-		return kategoriStr;
+		return antall;
 	}
 
 }

@@ -112,8 +112,8 @@ public class UtleieKontor {
 		
 	}
 	
-	public String getAntall(int teller) {
-		String kategoriStr = kategori.getAntall(teller);
-		return kategoriStr;
+	public int getAntall(int teller) {
+		int antall = kategori.getAntall(teller);
+		return antall;
 	}
 }

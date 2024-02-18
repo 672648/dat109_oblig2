@@ -1,22 +1,14 @@
 package Service.oblig2;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.JComboBox;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-import ServiceInterfaces.oblig2.ISok;
-import personer.oblig2.Kunde;
+import java.util.regex.Matcher;
 import utilitet.dat109.Pris;
-import utsted.dat109.Bil;
-import utsted.dat109.Kategori;
 import utsted.dat109.UtleieKontor;
 import utsted.dat109.UtleieKontorer;
 
@@ -34,7 +26,10 @@ public class Sok extends Pris {
 		
 	}
 
-	public List<UtleieKontor> hentKontorListAdresse(String adresse) {
+	private List<UtleieKontor> hentKontorListAdresse(String adresse) {
+		if(adresse.equals("")) {
+			return kontorer.hentKontor();
+		}
 		return kontorer.hentKontorAdresse(adresse);
 	}
 
@@ -48,36 +43,43 @@ public class Sok extends Pris {
 	
 	public void startSok() {
 		JFrame f = new JFrame();
-		String[] kategori = {"A", "B", "C", "D", "E", ""};
-		String valgtKategori = (String) JOptionPane.showInputDialog(f, "Liste av valg", "Velg kategori", JOptionPane.QUESTION_MESSAGE, null, kategori, kategori[0]);
 		
-		LocalDate startDato = LocalDate.parse(JOptionPane.showInputDialog(f, "Skriv inn start dato"));
-		LocalDate sluttDato = LocalDate.parse(JOptionPane.showInputDialog(f, "Skriv inn slutt dato"));
+		String startDatoString = JOptionPane.showInputDialog(f, "Skriv inn start dato \n YYYY-MM-DD");
+		LocalDate startDato = sjekkDato(startDatoString);
 		
-		String adresse = JOptionPane.showInputDialog(f, "skriv inn adresse");
+		String sluttDatoString = JOptionPane.showInputDialog(f, "Skriv inn slutt dato \n YYYY-MM-DD");
+		LocalDate sluttDato = sjekkDato(sluttDatoString);
 		
-		sok(valgtKategori, startDato, sluttDato, adresse);
+		String adresse = JOptionPane.showInputDialog(f, "skriv inn adresse \n ex: Bergenveien 2");
+		
+		sok(startDato, sluttDato, adresse);
+	}
+	
+	public LocalDate sjekkDato(String dato) {
+		String regex = "\\d{4}-\\d{2}-\\d{2}";
+		Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(dato);
+		if(dato.equalsIgnoreCase("") || !matcher.matches()) {
+			return LocalDate.now();
+		}
+		return LocalDate.parse(dato);
 	}
 
-	private void sok(String kategori, LocalDate startDato, LocalDate sluttDato, String adresse) {
+	private void sok(LocalDate startDato, LocalDate sluttDato, String adresse) {
+		
 		List<UtleieKontor> kontorer = hentKontorListAdresse(adresse);
 		int antallDager = (int) ChronoUnit.DAYS.between(startDato, sluttDato);
 		
-		String[] kategoriArr;
-		if(kategori.equals("")) {
-			kategoriArr = new String[] {"A", "B", "C", "D" , "E"};
-		}else {
-			kategoriArr = new String[5];
-			for(int i = 0; i < 5; i++) {
-				kategoriArr[i] = kategori; 
-			}
-		}
+		String[] kategoriArr = new String[] {"A", "B", "C", "D" , "E"};
 		
 		//Bytt til Kontor pos
 		int[] pos = lagDropDown(kontorer, antallDager, kategoriArr);
 		int kontorPos = pos[0];
 		int kategoriPos = pos[1];
-		kontorer.get(kontorPos).reservert(kategori);//kanskje fjerne denne linjen
+		//kontorer.get(kontorPos).reservert(kategori);//kanskje fjerne denne linjen
+		if(kontorer.get(kontorPos).getAntall(kategoriPos) == 0) {
+			startSok();
+		}
 		this.startDato = startDato;
 		this.sluttDato = sluttDato;
 		this.antallDager = antallDager;
@@ -92,8 +94,9 @@ public class Sok extends Pris {
 		for (int i = 0; i < kontorer.size(); i++) {
 			for(int j = 0; j < 5; j++) {
 				int q = i*5+j;
-				dropDownValg[q] = kontorer.get(i).getAdresse() + ": " + kontorer.get(i).getKategori(j) + " "
-						+ regnPris(kategoriArr[j], antallDager);
+				dropDownValg[q] = kontorer.get(i).getAdresse() + ": Pris : "
+						+ regnPris(kategoriArr[j], antallDager) + " antall:" + kontorer.get(i).getAntall(j) + 
+						" i " + kontorer.get(i).getKategori(j);
 			}
 		}
 		JFrame frame = new JFrame();

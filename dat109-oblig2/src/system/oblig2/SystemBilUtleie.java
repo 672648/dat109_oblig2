@@ -30,7 +30,6 @@ public class SystemBilUtleie {
 	
 	public SystemBilUtleie() {
 		info = new Informasjon();
-		start();
 	}
 	
 	public void start() {
@@ -151,13 +150,10 @@ public class SystemBilUtleie {
 				kontor = info.getKontor(adresse);
 				List<Bil> biler = kontor.faListe(reservasjon.getKategori());
 				String[] bilListe = new String[biler.size()];
-				System.out.println("fungerer");
 				for (int k = 0; k < biler.size(); k++) {
 					bilListe[k] = biler.get(k).getMerke() + " " + biler.get(k).getModell() + " " + biler.get(k).getFarge();
 				}
-				System.out.println(bilListe[0]);
 				input = (String) JOptionPane.showInputDialog(f, "Liste over biler", "Velg en bil", JOptionPane.QUESTION_MESSAGE, null, bilListe, bilListe[0]);
-				System.out.println("input fungerer");
 				int index = 0;
 				for (int n = 0; n < bilListe.length; n++) {
 					if (input == bilListe[n]) {
@@ -200,8 +196,8 @@ public class SystemBilUtleie {
 	
 	public void startKontor() { //Generer kontorer og biler for programmet
 		for (int i = 0; i < 8; i++) {
-			int tilfeldigPoststed = (int) Math.random() * 5;
-			int tilfeldigPostNr = (int) Math.random() * (9999 - 1000) + 1000;
+			int tilfeldigPoststed = (int) (Math.random() * 5);
+			int tilfeldigPostNr = (int) (Math.random() * (9999 - 1000) + 1000);
 			kontorer = info.getUtleieKontor();
 			kontorer.lagKontorer(Utilitet.gateAdresser[i], Utilitet.postSteder[tilfeldigPoststed], tilfeldigPostNr);
 			genererBiler();
@@ -210,31 +206,36 @@ public class SystemBilUtleie {
 
 	public void genererBiler() {
 		for (UtleieKontor kontor : kontorer.hentKontor()) {
-			kontor.lagBil(regNr(), merke(), modell(), farge(), kontor.getKategori((int) Math.random() * 5), km());
+			kontor.lagBil(regNr(), merke(), modell(), farge(), kontor.getKategori((int) (Math.random() * 5)), km());
 		}
 	}
 
 	public String regNr() {
-		return Utilitet.regNr[(int) Math.random() * 50];
+		return Utilitet.regNr[(int) (Math.random() * 50)];
 	}
 	
 	public String modell() {
-		return Utilitet.modeller[(int) Math.random() * 5];
+		return Utilitet.modeller[(int) (Math.random() * 5)];
 	}
 
 	public String merke() {
-		return Utilitet.merker[(int) Math.random() * 7];
+		return Utilitet.merker[(int) (Math.random() * 7)];
 	}
 
 	public String farge() {
-		return Utilitet.farger[(int) Math.random() * 7];
+		return Utilitet.farger[(int) (Math.random() * 7)];
 	}
 
 	public String gateAdresse() {
-		return Utilitet.gateAdresser[(int) Math.random() * 8];
+		return Utilitet.gateAdresser[(int) (Math.random() * 8)];
 	}
 
 	public int km() {
-		return (int) Math.random() * 500000;
+		return (int) (Math.random() * 500000);
+	}
+	
+	//Trenger dette bare for JUnit
+	public Informasjon getInformasjon() {
+		return info;
 	}
 }
