@@ -13,19 +13,19 @@ public class Kunde {
 	private JFrame f;
 	
 	public Kunde() {
-		String input = JOptionPane.showInputDialog(f, "Skiv inn fornavn:");
+		String input = JOptionPane.showInputDialog(f, "Skiv inn fornavn");
 		if (input == null) {
 			System.exit(0);
 		}
 		this.fornavn = input;
 		
-		input = JOptionPane.showInputDialog(f, "Skriv inn etternavn:");
+		input = JOptionPane.showInputDialog(f, "Skriv inn etternavn");
 		if (input == null) {
 			System.exit(0);
 		}
 		this.etternavn = input;
 		
-		input = JOptionPane.showInputDialog(f, "Skriv inn telefonnummer:");
+		input = JOptionPane.showInputDialog(f, "Skriv inn telefonnummer");
 		if (input == null) {
 			System.exit(0);
 		}

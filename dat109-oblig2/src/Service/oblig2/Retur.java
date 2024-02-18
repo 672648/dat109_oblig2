@@ -21,7 +21,7 @@ public class Retur extends Pris{
 		int pris = 0;
 		
 		if (sammeLokasjon) {
-			pris = regnPris(kategori, 3);
+			pris = regnPris(kategori, antallDager);
 		}
 		else {
 			pris = regnPrisMedGebyr(kategori, antallDager);

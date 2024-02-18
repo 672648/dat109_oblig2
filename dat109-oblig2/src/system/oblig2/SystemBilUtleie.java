@@ -14,6 +14,7 @@ import Service.oblig2.Utleie;
 import personer.oblig2.Ansatt;
 import personer.oblig2.Kunde;
 import utilitet.dat109.Informasjon;
+import utilitet.dat109.Utilitet;
 import utsted.dat109.Bil;
 import utsted.dat109.UtleieKontor;
 import utsted.dat109.UtleieKontorer;
@@ -21,9 +22,11 @@ import utsted.dat109.UtleieKontorer;
 public class SystemBilUtleie {
 	private JFrame f;
 	private String input;
+	private Kunde kunde;
 	private Ansatt ansatt;
 	private Informasjon info;
 	private UtleieKontor kontor;
+	private UtleieKontorer kontorer;
 	
 	public SystemBilUtleie() {
 		info = new Informasjon();
@@ -31,6 +34,7 @@ public class SystemBilUtleie {
 	}
 	
 	public void start() {
+		startKontor();
 		while (true) {
 			opprettBruker();
 			input = velgService();
@@ -59,7 +63,6 @@ public class SystemBilUtleie {
 				JOptionPane.showMessageDialog(f, "Ansatt er valgt, trykk 'ok' for å gå videre");
 				ansatt = new Ansatt(info.getUtleieKontor());
 				kundeEllerAnsatt = false;
-				ansatt.startKontor();
 				break;
 			default:
 				input = JOptionPane.showInputDialog(f, "Beklager, men du må skrive om du er 'kunde' eller 'ansatt'");
@@ -97,6 +100,12 @@ public class SystemBilUtleie {
 			service[4] = "Opprett ny bil";
 			input = (String) JOptionPane.showInputDialog(f, "Service liste", "Velg hvilken service du vil bruke", JOptionPane.QUESTION_MESSAGE, null, service, service[0]);
 			
+			switch (input) {
+			case "Reserver bil":
+				kunde = new Kunde();
+				break;
+			}
+			
 			if (input == null) {
 				System.exit(0);
 			}
@@ -109,7 +118,6 @@ public class SystemBilUtleie {
 	private void utforService(String input) {
 		switch (input) {
 		case "Reserver bil":
-			kunde = new Kunde();
 			reserverBil();
 			break;
 		case "Utleie bil":
@@ -119,9 +127,7 @@ public class SystemBilUtleie {
 			returnerBil();
 			break;
 		case "Opprett ny kontor":
-			System.out.println("here");
 			String[] kontorVerdier = ansatt.opprettKontor();
-			System.out.println(kontorVerdier[0]);
 			lagKontor(kontorVerdier);
 			break;
 		case "Opprett ny bil":
@@ -132,11 +138,6 @@ public class SystemBilUtleie {
 	
 	private void reserverBil() {
 		info.sok();
-		/*
-		sok = new Sok(kunde, info.getUtleieKontor());
-		sok.startSok();
-		System.out.println(sok.getReservasjon().getId());
-		info.leggTilReservasjon(sok.getReservasjon());*/
 		JOptionPane.showMessageDialog(f, "Reservasjonen din har blitt bekreftet! \nDin ID er: " + info.leggTilReservasjon());
 	}
 	
@@ -150,10 +151,13 @@ public class SystemBilUtleie {
 				kontor = info.getKontor(adresse);
 				List<Bil> biler = kontor.faListe(reservasjon.getKategori());
 				String[] bilListe = new String[biler.size()];
+				System.out.println("fungerer");
 				for (int k = 0; k < biler.size(); k++) {
 					bilListe[k] = biler.get(k).getMerke() + " " + biler.get(k).getModell() + " " + biler.get(k).getFarge();
 				}
+				System.out.println(bilListe[0]);
 				input = (String) JOptionPane.showInputDialog(f, "Liste over biler", "Velg en bil", JOptionPane.QUESTION_MESSAGE, null, bilListe, bilListe[0]);
+				System.out.println("input fungerer");
 				int index = 0;
 				for (int n = 0; n < bilListe.length; n++) {
 					if (input == bilListe[n]) {
@@ -161,6 +165,7 @@ public class SystemBilUtleie {
 					}
 				}
 				info.lagUtleie(id, biler.get(index).getRegnr(), biler.get(index).getKm(), biler.get(index).getKategori(), reservasjon.getAntallDager());
+				JOptionPane.showMessageDialog(f, "En bil har nå blit utleid");
 			} 
 		}
 	}
@@ -183,31 +188,53 @@ public class SystemBilUtleie {
 		}
 	}
 	
-	/*private void opprettKontor() {
-		adresse = JOptionPane.showInputDialog(f, "Skriv inn gate adresse");
-		String postSted = JOptionPane.showInputDialog(f, "Skriv inn poststed");
-		String postNummer = JOptionPane.showInputDialog(f, "Skriv inn postnummer");
-		int postNr = Integer.parseInt(postNummer);
-		ansatt.lagKontor(adresse, postSted, postNr);
-	}*/
-	
-	/*private void opprettBil() {
-		adresse = JOptionPane.showInputDialog(f, "Skriv inn gate adresse");
-		String regNummer = JOptionPane.showInputDialog(f, "Skriv inn registreringsnummer");
-		String merke = JOptionPane.showInputDialog(f, "Skriv inn gate merke");
-		String modell = JOptionPane.showInputDialog(f, "Skriv inn modell");
-		String farge = JOptionPane.showInputDialog(f, "Skriv inn gate farge");
-		String kategori = JOptionPane.showInputDialog(f, "Skriv inn gate kategori");
-		String kilometerStand = JOptionPane.showInputDialog(f, "Skriv inn kilometerstand");
-		int km = Integer.parseInt(kilometerStand);
-		ansatt.lagBil(adresse, regNummer, merke, modell, farge, kategori, km);
-	}*/
-	
 	public void lagKontor(String[] kontorVerdier) {
 		info.leggTilKontorer(kontorVerdier[0], kontorVerdier[1], Integer.parseInt(kontorVerdier[2]));
+		JOptionPane.showMessageDialog(f, "En ny kontor har blitt lagt til");
 	}
 
 	public void lagBil(String[] bilVerdier) {
 		info.leggTilBil(bilVerdier);
+		JOptionPane.showMessageDialog(f, "En ny bil har blitt lagt til");
+	}
+	
+	public void startKontor() { //Generer kontorer og biler for programmet
+		for (int i = 0; i < 8; i++) {
+			int tilfeldigPoststed = (int) Math.random() * 5;
+			int tilfeldigPostNr = (int) Math.random() * (9999 - 1000) + 1000;
+			kontorer = info.getUtleieKontor();
+			kontorer.lagKontorer(Utilitet.gateAdresser[i], Utilitet.postSteder[tilfeldigPoststed], tilfeldigPostNr);
+			genererBiler();
+		}
+	}
+
+	public void genererBiler() {
+		for (UtleieKontor kontor : kontorer.hentKontor()) {
+			kontor.lagBil(regNr(), merke(), modell(), farge(), kontor.getKategori((int) Math.random() * 5), km());
+		}
+	}
+
+	public String regNr() {
+		return Utilitet.regNr[(int) Math.random() * 50];
+	}
+	
+	public String modell() {
+		return Utilitet.modeller[(int) Math.random() * 5];
+	}
+
+	public String merke() {
+		return Utilitet.merker[(int) Math.random() * 7];
+	}
+
+	public String farge() {
+		return Utilitet.farger[(int) Math.random() * 7];
+	}
+
+	public String gateAdresse() {
+		return Utilitet.gateAdresser[(int) Math.random() * 8];
+	}
+
+	public int km() {
+		return (int) Math.random() * 500000;
 	}
 }

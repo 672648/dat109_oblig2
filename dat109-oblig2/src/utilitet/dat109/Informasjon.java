@@ -3,6 +3,8 @@ package utilitet.dat109;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import Service.oblig2.Reservasjon;
 import Service.oblig2.Retur;
 import Service.oblig2.Utleie;
